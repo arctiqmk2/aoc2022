@@ -22,6 +22,7 @@ fn main() {
             let first_val:i8 = (first as i8)-64;
             let last_val:i8 = (last as i8)-87;
             line_score += last_val;
+
             if (last_val - first_val) == 0 {
                 line_score += 3; 
             } else if (last_val - first_val) == 1 {
@@ -33,38 +34,21 @@ fn main() {
             } else if (last_val - first_val) == -2 {
                 line_score += 6;
             }
-           //println!("{} line score", line_score);
+            let loss_values = [3,1,2];
+            let win_values = [2,3,1];
             if last_val == 1 {
-            // loss
-                if first_val == 1 {
-                    second_last_val = 3;
-                } else if first_val == 2 {
-                    second_last_val = 1;
-                } else {
-                    second_last_val = 2;
-                }
-                //println!("loss {} {} {}", first_val, last_val, second_last_val);
-                second_line_score += second_last_val;
+                // loss
+                second_last_val = loss_values[(first_val as usize)-1];
             } else if last_val == 2 {
                 // draw
-                second_last_val = first_val;
-                //println!("draw {} {} {}", first_val, last_val, second_last_val);
-                second_line_score += 3;
-                second_line_score += second_last_val;      
+                second_last_val = first_val + 3;   
             } else if last_val == 3 {
-            //win
-                if first_val == 1 {
-                    second_last_val = 2;
-                } else if first_val == 2 {
-                    second_last_val = 3;
-                } else {
-                    second_last_val = 1;
-                }
-                //println!("win {} {} {}", first_val, last_val, second_last_val);
-                second_line_score += 6;
-                second_line_score += second_last_val;
+                //win
+                second_last_val = win_values[(first_val as usize)-1] + 6;
+            } else {
+                second_last_val = 0;
             }
-            //println!("{} second line score", second_line_score);
+            second_line_score += second_last_val;
         }
         score += line_score as i32;
         second_score += second_line_score as i32;
