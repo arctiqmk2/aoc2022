@@ -8,7 +8,7 @@ use std::fs;
 // plus the score for the outcome of the round (0 if you lost, 3 if the round was a draw, and 6 if you won).
 
 fn main() {
-    let contents = fs::read_to_string("/Users/mkennedy/Library/Mobile Documents/com~apple~CloudDocs/Projects/aoc2022/dec02/input.txt").expect("Wrong file name!");
+    let contents = fs::read_to_string("input.txt").expect("Wrong file name!");
     let mut score: i32 = 0;
     let mut second_score: i32 = 0;
     for line in contents.split("\n") {

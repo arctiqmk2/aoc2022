@@ -1,7 +1,7 @@
 use std::fs;
 
 fn main() {
-    let contents = fs::read_to_string("/Users/mkennedy/Library/Mobile Documents/com~apple~CloudDocs/Projects/aoc2022/dec01/input.txt").expect("Wrong file name!");
+    let contents = fs::read_to_string("input.txt").expect("Wrong file name!");
     let mut elf: usize = 0;
     let mut elves: Vec<u32> = Vec::new();
     elves.push(0);
