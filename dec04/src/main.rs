@@ -12,9 +12,7 @@ fn main() {
         let range1stop: i32 = cap[2].parse::<i32>().unwrap();
         let range2start: i32 = cap[3].parse::<i32>().unwrap();
         let range2stop: i32 = cap[4].parse::<i32>().unwrap();
-        if range1start <= range2start && range1stop >= range2stop {
-            overlaps += 1;
-        } else if range2start <= range1start && range2stop >= range1stop {
+        if (range1start <= range2start && range1stop >= range2stop) || (range2start <= range1start && range2stop >= range1stop) {
             overlaps += 1;
         }
         let range1: Vec<i32> = (range1start..range1stop+1).collect();
