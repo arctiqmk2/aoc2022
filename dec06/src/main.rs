@@ -1,6 +1,4 @@
 use std::fs;
-use std::cmp;
-use std::collections::HashMap;
 use substring::Substring;
 
 
@@ -11,23 +9,9 @@ fn main() {
             let (unique_string, position) = find_first_unique_set(4,line.to_string());
             println!("'{}' start-of-packet marker at pos {}", unique_string, position+4);
             let (unique_string, position) = find_first_unique_set(14,line.to_string());
-            println!("'{}' start-of-message market at pos {}", unique_string, position+14);
+            println!("'{}' start-of-message marker at pos {}", unique_string, position+14);
         }
     }
-}
-
-pub fn get_longest_substring(s: String) -> (String, usize, usize) {
-    let mut length = 0;
-    let mut char_set: HashMap<char, usize> = HashMap::new();
-    let mut start = 0;
-    for (end, c) in s.char_indices() {
-        if let Some(&n) = char_set.get(&c) {
-            start = cmp::max(start, n);
-        }
-        length = cmp::max(length, end - start + 1);
-        char_set.insert(c, end + 1);
-    }
-    (s.substring(start,start+length-1).to_string(), start, length-1)
 }
 
 pub fn find_first_unique_set(ul: usize, s: String) -> (String, usize) {
@@ -47,5 +31,9 @@ pub fn find_first_unique_set(ul: usize, s: String) -> (String, usize) {
         let size = uniq.len();
         if size == ul { break };
     }
-    (uniq, start)
+    if uniq.len() < ul {
+        return ("".to_string(),0);
+    } else {
+        return (uniq, start);
+    }
 }
